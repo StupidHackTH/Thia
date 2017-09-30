@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FacebookButton, FacebookCount } from "react-social";
+import  key from './footer'
 export default class Card extends Component {
     constructor(){
         super();
@@ -8,18 +9,21 @@ export default class Card extends Component {
           image:'./bg.png'
         }
       }
-      onSave=()=>{
+componentDidMount(){
+     //console.log(this.props.match.params.id)
+}
+onSave=()=>{
         let a = document.createElement('a');
         a.href = this.state.sceen;
         a.download = 'image.png';
         a.click()
         }
-    render() {
-        
+render() {
+        console.log(this.props)
         let url = "https://github.com";
         const appId="347460905704240";
 return (
-<div>
+<div  className="App">
  <div className="card">
   <div className="card-image">
     <figure className="image is-4by3">
