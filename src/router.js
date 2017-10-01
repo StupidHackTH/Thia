@@ -4,7 +4,7 @@ import {
     Route,
   } from 'react-router-dom'
 import App from './App';
-import Card from './card';
+import Share  from './share';
 // import ParamsExample from './footer'
 export default class Routers extends Component {
     render() {
@@ -12,7 +12,7 @@ export default class Routers extends Component {
             <Router>
                 <div>
                     <Route exact path="/" component={App}/>
-                    <Route path="/card/:id" component={Card}/>
+                    <Route path="/card/:id" component={Share}/>
                 </div>
             </Router>
         )

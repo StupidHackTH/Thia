@@ -1,26 +1,34 @@
 import React, { Component } from 'react'
 import { FacebookButton, FacebookCount } from "react-social";
 import  key from './footer'
+import  { ref,get } from './config';
 export default class Card extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
           sceen:null,
-          image:'./bg.png'
+          image:'./bg.png',
+          keys:""
         }
       }
 componentDidMount(){
-     //console.log(this.props.match.params.id)
+   console.log(this.state.keys);
+   get.ref().child(`image/${this.props.keys}/`).once('value',(snapshot)=>{
+      let data = snapshot.val()
+      console.log(data)
+   })
+     //console.log(this.props.match.params.id) 
+      //console.log(a);
 }
 onSave=()=>{
         let a = document.createElement('a');
         a.href = this.state.sceen;
         a.download = 'image.png';
-        a.click()
+        a.click() 
+        //this.setState({keys:this.props.keys})
         }
 render() {
-        console.log(this.props)
-        let url = "https://github.com";
+        let url = `https://stupidhackth.github.io/Thia/card/${this.props.keys}`;
         const appId="347460905704240";
 return (
 <div  className="App">

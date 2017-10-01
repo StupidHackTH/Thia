@@ -12,7 +12,8 @@ class App extends Component {
     this.state={
       sceen:null,
       image:'./bg.png',
-      imgkey:[]
+      imgkey:[],
+      getkey:""
     }
   }
   setRef = (webcam) => {
@@ -22,15 +23,19 @@ class App extends Component {
     const imageSrc = this.webcam.getScreenshot();
     //console.log(imageSrc)
     let imgkey=[];
+    let getkey=''
+    const that = this;
     this.setState({sceen:imageSrc})
     ref.child('image').push({
         "src":this.state.sceen
     }).then((data)=>{
-       console.log(data.key)
-      //  imgkey.push(data.key)
+       const key = data.key;
+      // console.log(data.key)
+       imgkey.push(data.key)
+       that.setState({getkey:data.key})
     });
-        this.setState({imgkey})
-        console.log(this.state.imgkey)
+       this.setState({imgkey})
+       console.log(this.state.getkey)
   };
   render() {
     const avatarStyle ={
@@ -53,7 +58,7 @@ class App extends Component {
           <br/><br/><br/><br/><br/><br/><br/><br/>
           <p id="data">{this.state.sceen ?  <div style={{width:450,height:450,marginLeft:460}}>
              <h3 className="title2">Caption For you </h3>
-             <Card im={this.state.sceen} key={this.state.imgkey} />
+             <Card im={this.state.sceen} keys={this.state.getkey} />
              </div> : null} </p>   
       </div>
       <br/><br/><br/><br/>
